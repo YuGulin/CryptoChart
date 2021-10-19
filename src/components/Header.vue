@@ -10,7 +10,7 @@
                 CryptoChart's
             </b-navbar-brand>
 
-            <b-navbar-toggle target="nav-collapse"/>
+            <b-navbar-toggle target="nav-collapse" />
 
             <b-collapse
                 id="nav-collapse"

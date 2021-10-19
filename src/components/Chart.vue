@@ -4,8 +4,8 @@
             {{ coinName }}
         </h1>
         <div
-            class="hello"
             ref="chartdiv"
+            class="hello"
         />
     </b-container>
 </template>
@@ -35,6 +35,19 @@
                 return this.list.find(c => c.query === this.coin).name
             }
         },
+        watch: {
+            coin() {
+                this.updateData()
+            }
+        },
+        mounted() {
+            this.updateData()
+        },
+        beforeDestroy() {
+            if (this.chart) {
+                this.chart.dispose();
+            }
+        },
         methods: {
             updateData() {
                 let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
@@ -44,10 +57,9 @@
 
                         console.log(response.data.data)
 
-                        let data = [];
-                        data = response.data.data
+                        let data = response.data.data
 
-                        chart.paddingRight = 20;
+                        chart.paddingRight = 20
 
                         data.forEach((item) => {
                             item.date = new Date(item.date)
@@ -76,19 +88,6 @@
                     .catch(e => {
                         this.errors.push(e)
                     })
-            }
-        },
-        mounted() {
-            this.updateData()
-        },
-        watch: {
-            coin() {
-                this.updateData()
-            }
-        },
-        beforeDestroy() {
-            if (this.chart) {
-                this.chart.dispose();
             }
         }
     }

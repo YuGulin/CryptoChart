@@ -31,14 +31,16 @@
             "node": true
         },
         "extends": [
-            "plugin:vue/essential",
-            "plugin:vue/strongly-recommended",
+            "plugin:vue/recommended",
             "eslint:recommended"
         ],
         "parserOptions": {
             "parser": "babel-eslint"
         },
-        "rules": {}
+        "rules": {
+            "vue/html-indent": ["error",4,{"baseIndent": 1}],
+            "vue/script-indent": ["error",4,{"baseIndent": 1}]
+        }
     },
     "browserslist": [
         "> 1%",

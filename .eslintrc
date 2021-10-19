@@ -1,0 +1,14 @@
+{
+    "root": true,
+    "env": {
+        "node": true
+    },
+    "extends": [
+        "plugin:vue/recommended",
+        "eslint:recommended"
+    ],
+    "rules": {
+        "vue/html-indent": ["error",4,{"baseIndent": 1}],
+        "vue/script-indent": ["error",4,{"baseIndent": 1}]
+    }
+}
