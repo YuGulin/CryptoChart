@@ -54,33 +54,26 @@
 
                 axios.get(`https://api.coincap.io/v2/assets/` + this.coin + `/history?interval=d1`)
                     .then(response => {
-
-                        console.log(response.data.data)
-
                         let data = response.data.data
-
-                        chart.paddingRight = 20
 
                         data.forEach((item) => {
                             item.date = new Date(item.date)
-                            item.value = item.priceUsd
                         })
-
-                        console.log(data)
 
                         chart.data = data;
 
                         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                        dateAxis.renderer.grid.template.location = 0;
+                        dateAxis.tooltipDateFormat = "dd-MMM-yyyy";
 
                         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
                         valueAxis.tooltip.disabled = true;
 
                         let series = chart.series.push(new am4charts.LineSeries());
                         series.dataFields.dateX = "date";
-                        series.dataFields.valueY = "value";
+                        series.dataFields.valueY = "priceUsd";
 
-                        series.tooltipText = "{valueY.value}";
+                        series.tooltip.pointerOrientation = "vertical";
+                        series.tooltipText = "{valueY}";
                         chart.cursor = new am4charts.XYCursor();
 
                         this.chart = chart;
